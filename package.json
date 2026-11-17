@@ -1,0 +1,51 @@
+{
+  "name": "imobitec-vistoria-qa",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "install:ci": "node scripts/install-ci.mjs",
+    "dev": "next dev --hostname 127.0.0.1 --port 5173",
+    "dev:sites": "node scripts/run-framework.mjs dev",
+    "build": "node scripts/validate-supabase-env.mjs && next build",
+    "build:sites": "node scripts/run-framework.mjs build",
+    "start": "next start --hostname 127.0.0.1 --port 5173",
+    "start:sites": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --port 5173 --inspector-port 0",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:coverage": "node --experimental-strip-types --experimental-test-coverage --test tests/*.test.ts",
+    "test:integration": "node --import ./tests/helpers/alias-register.mjs --experimental-strip-types --test tests/integration/*.test.ts",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.3",
+    "lucide-react": "^1.31.0",
+    "next": "16.3.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@cloudflare/workers-types": "4.20260515.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.4",
+    "react-server-dom-webpack": "19.2.6",
+    "typescript": "5.9.3",
+    "vinext": "1.0.0-beta.5",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module",
+  "overrides": {
+    "miniflare": {
+      "sharp": "0.35.4"
+    }
+  }
+}

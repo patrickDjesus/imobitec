@@ -1,0 +1,14 @@
+"$schema" = "https://open-api.netlify.com/netlify.schema.json"
+
+[build]
+  command = "pnpm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22.13.0"
+  # Chaves publishable são públicas e próprias para aplicações no navegador.
+  NEXT_PUBLIC_SUPABASE_URL = "https://hrcwpicezgfdpzahlzib.supabase.co"
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fGt8Xd-2M_bCtD1-xwy5lQ_NVSkPNZy"
+
+[dev]
+  command = "pnpm run dev"
